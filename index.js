@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import net from "net";
 
-const WEBHOOK = "https://discord.com/api/webhooks/1484134516363890860/1z8uVzHLTue-OsLStUI2TGOltYdvQ9g0Tku2gsCIcbEMBN8Y7P0UoWJZnkilV6bXMWQK";
+const WEBHOOK = process.env.WEBHOOK_URL;
 const HOST = "144.126.153.215";
 const PORT = 32515;
 
