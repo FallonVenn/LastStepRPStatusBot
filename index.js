@@ -26,24 +26,32 @@ async function send(msg) {
 }
 
 // Check server
+let failCount = 0;
+const FAIL_THRESHOLD = 2; // how many failed checks before calling it "down"
+
 function checkServer() {
   const socket = new net.Socket();
 
-  socket.setTimeout(3000);
+  socket.setTimeout(2000);
 
   socket.connect(PORT, HOST, () => {
+    // SUCCESS
     if (!wasOnline) {
       send("✅ Server back online!");
     }
+
     wasOnline = true;
+    failCount = 0;
     socket.destroy();
   });
 
   socket.on("error", () => {
-    if (wasOnline) {
+    failCount++;
+
+    if (wasOnline && failCount >= FAIL_THRESHOLD) {
       send("🔄 Server restarting...");
+      wasOnline = false;
     }
-    wasOnline = false;
   });
 
   socket.on("timeout", () => {
@@ -52,7 +60,7 @@ function checkServer() {
 }
 
 // Run every 30 seconds
-setInterval(checkServer, 30000);
+setInterval(checkServer, 10000);
 
 // Restart schedule messages
 function scheduleRestartWarnings() {
