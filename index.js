@@ -4,7 +4,7 @@ import http from "http";
 
 const WEBHOOK = process.env.WEBHOOK_URL;
 const HOST = "144.126.153.215";
-const PORT = 32515;
+const PORT = 32516; // RCON port instead; Query Port is 32515
 
 let wasOnline = true;
 
