@@ -94,6 +94,3 @@ http.createServer((req, res) => {
 
 // Startup log
 console.log("Last Step RP Server Status Bot is running...");
-
-//Test Message
-send("Test message from bot");
