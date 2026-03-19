@@ -67,16 +67,20 @@ function scheduleRestartWarnings() {
   setInterval(() => {
     const now = new Date();
 
-    // ⚠️ Adjust to your restart time if needed
-    if (now.getHours() === 5 && now.getMinutes() === 50) {
+    // UTC times for 8 PM EDT restart
+    if (now.getUTCHours() === 23 && now.getUTCMinutes() === 50) {
       send("⚠️ Server restart in 10 minutes");
     }
-    if (now.getHours() === 5 && now.getMinutes() === 55) {
+    if (now.getUTCHours() === 23 && now.getUTCMinutes() === 55) {
       send("⚠️ Server restart in 5 minutes");
     }
-    if (now.getHours() === 5 && now.getMinutes() === 59) {
+    if (now.getUTCHours() === 23 && now.getUTCMinutes() === 59) {
       send("⚠️ Server restart in 1 minute");
     }
+    if (now.getUTCHours() === 0 && now.getUTCMinutes() === 0) {
+      send("🔄 Server restarting now...");
+    }
+
   }, 60000);
 }
 
