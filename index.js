@@ -68,3 +68,10 @@ function scheduleRestartWarnings() {
 }
 
 scheduleRestartWarnings();
+
+import http from "http";
+
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end("Bot is running");
+}).listen(3000);
